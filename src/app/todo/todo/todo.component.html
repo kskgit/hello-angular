@@ -38,24 +38,26 @@
     </div>
   </div>
 
-  <div class="row itemListArea ">
-    <ngb-accordion class="col-sm-12">
-      <ngb-panel *ngFor="let item of itemList; let i=index;">
-        <div accordion-heading [class.isComplete]="item.isComplete">
-          {{item.title}}
-        </div>
-        <div>
-          <strong>詳細：</strong>
-          <pre>{{item.description ? item.description : "-"}}</pre>
-        </div>
-        <div>
-          <strong>日付：</strong>
-          <span>{{item.date ? item.date : "-"}}</span>
-        </div>
-        <div>
-          <button class="btn btn-success" (click)="item.isComplete = !item.isComplete ">{{item.isComplete ? "未完了に戻す" : "完了にする"}}</button>
-          <button class="btn btn-danger" (click)="onDeleteItem(i)">削除</button>
-        </div>
+  <div class="row">
+    <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0" class="col-sm-12">
+      <ngb-panel title="詳細" *ngFor="let item of itemList; let i=index;">
+        <ng-template ngbPanelContent>
+          <div accordion-heading [class.isComplete]="item.isComplete">
+            {{item.title}}
+          </div>
+          <div>
+            <strong>詳細：</strong>
+            <pre>{{item.description ? item.description : "-"}}</pre>
+          </div>
+          <div>
+            <strong>日付：</strong>
+            <span>{{item.date ? item.date : "-"}}</span>
+          </div>
+          <div>
+            <button class="btn btn-success" (click)="item.isComplete = !item.isComplete ">{{item.isComplete ? "未完了に戻す" : "完了にする"}}</button>
+            <button class="btn btn-danger" (click)="onDeleteItem(i)">削除</button>
+          </div>
+        </ng-template>
       </ngb-panel>
     </ngb-accordion>
   </div>
